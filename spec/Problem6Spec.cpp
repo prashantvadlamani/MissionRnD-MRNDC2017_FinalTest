@@ -54,10 +54,64 @@ namespace spec
 #pragma endregion
 
 
+		struct ListNode *createNode_P6(int val){
+			struct ListNode *newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
+			newNode->next = NULL;
+			newNode->val = val;
+			return newNode;
+		}
+
+		struct ListNode* createList_P6(char *s){
+			int i;
+			struct ListNode *walker = NULL;
+			struct ListNode *head = createNode_P6(s[0]);
+			walker = head;
+			for (i = 1; s[i] != '\0'; i++){
+				walker->next = createNode_P6(s[i]);
+				walker = walker->next;
+			}
+
+			return head;
+		}
+
+		void createDataAndTest_P6(char *input, char *expectedOutput) {
+			struct ListNode * head = createList_P6(input);
+			pairUp(head);
+
+			char actualStr[510] = "";
+			int i = 0;
+
+			while (head){
+				actualStr[i] = (head->val);
+				head = head->next;
+				i++;
+			}
+
+			i = 0;
+			while (expectedOutput[i] != '\0' || actualStr[i] != '\0'){
+				Assert::AreEqual(expectedOutput[i], actualStr[i], "Failed in Problem 6 ,Links not properly handled", 1, 2);
+				i++;
+			}
+
+		}
+
 		[TestMethod, Timeout(1000)]
 		void Sample1_Problem6()
 		{
-			
+			pairUp(NULL);
+
+		};
+
+		[TestMethod, Timeout(1000)]
+		void Sample2_Problem6()
+		{
+			createDataAndTest_P6("123456", "162534");
+		};
+
+		[TestMethod, Timeout(1000)]
+		void Sample3_Problem6()
+		{
+			createDataAndTest_P6("912354786", "961827345");
 		};
 
 	};

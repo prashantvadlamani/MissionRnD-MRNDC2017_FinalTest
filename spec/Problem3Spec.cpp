@@ -54,10 +54,23 @@ namespace spec
 		//
 #pragma endregion 
 
+		/* 2 Sample test cases required */
 		[TestMethod, Timeout(1000)]
 		void Sample1_Problem3()
 		{
+			int array[] = { 2, 3, 4 };
+			int len = sizeof(array) / sizeof(int);
+			int minSum = 2;
 
+			int result = nTripCount((int*)array, len, minSum);
+			Assert::AreEqual(5, result, L"Failed ", 1, 2);
+		};
+
+		[TestMethod, Timeout(1000)]
+		void Sample2_Problem3()
+		{
+			int result = nTripCount(NULL, -1, 0);
+			Assert::AreEqual(0, result, L"Failed ", 1, 2);
 		};
 
 	};

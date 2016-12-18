@@ -56,7 +56,17 @@ namespace spec
 		[TestMethod, Timeout(1000)]
 		void Sample1_Problem4()
 		{
-			
+			int moves[][2] = { { 0, 1 }, { 0, 0 }, { 1, 1 }, { 1, 0 }, { 0, 2 }, { 2, 0 } };
+			int nMoves = sizeof(moves) / (2 * sizeof(int));
+
+			int result = gameOutput((int*)moves, nMoves);
+			Assert::AreEqual(2, result, L"Failed ", 1, 2);
+		};
+		[TestMethod, Timeout(1000)]
+		void Sample2_Problem4()
+		{
+			int result = gameOutput(NULL, -1);
+			Assert::AreEqual(0, result, L"Failed ", 1, 2);
 		};
 
 	};
